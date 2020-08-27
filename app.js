@@ -14,22 +14,8 @@ const teamArray = [];
 const teamIds = [];
 
 function init() {
-    function nameTeam() {
-        inquirer.prompt([
-            {
-                type: "input",
-                message: "Welcome to the Team Profile Generator! Start by telling us the name of your team.",
-                name: "teamname"
-            }
-        ])
-            .then(function(data) {
-                const teamName = data.teamName
-                teamArray.push(teamName)
-                addManager();
-            });
-    }
-
     function addManager() {
+        console.log("Welcome! Please follow the prompts to build your team's profile!")
         inquirer.prompt([
             {
                 type: "input",
@@ -53,7 +39,7 @@ function init() {
             },
         ])
         .then(answers => {
-            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+            const manager = new Manager(answers.managerName, answers.managerIdNumber, answers.managerEmail, answers.managerOfficeNumber);
             teamArray.push(manager);
             teamIds.push(answers.managerId)
             buildTeam();
@@ -151,12 +137,12 @@ function init() {
         });
     }
 
-   function createTeamSite() {
-       fs.writeFileSync(outputPath, render(teamArray), "utf-8");
-       console.log("Success! Your team page has been rendered in the output folder!")
-   } 
+    function createTeamSite() {
+        fs.writeFileSync(outputPath, render(teamArray), "utf-8");
+        console.log("Congratulations! Your Team Profile has been created and rendered in the output folder!");
+    }
 
-   nameTeam();
+   addManager();
 
 
 }
