@@ -17,7 +17,7 @@ function init() {
     function nameTeam() {
         inquirer.prompt([
             {
-                type: "input"
+                type: "input",
                 message: "Welcome to the Team Profile Generator! Start by telling us the name of your team.",
                 name: "teamname"
             }
@@ -152,7 +152,7 @@ function init() {
     }
 
    function createTeamSite() {
-       fs.writeFileSync(outputPath, render(teamArray));
+       fs.writeFileSync(outputPath, render(teamArray), "utf-8");
        console.log("Success! Your team page has been rendered in the output folder!")
    } 
 
